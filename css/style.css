@@ -174,13 +174,33 @@ main {
   gap: 10px;
 }
 
+.card-win {
+  max-width: 450px;
+}
+
 p, h2, a, b, span, h4 {
   font-family: 'Baloo 2', cursive;
   background-color: #496494;
 }
 
-.example-row, #frase-final {
+.example-row, #frase-final, .progresso, .slot, .btns {
   background-color: #496494;
+}
+
+.progresso {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  max-width: 80px;
+}
+
+.btns {
+  gap: 10px;
 }
 
 #frase-final {
