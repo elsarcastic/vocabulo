@@ -2,6 +2,10 @@ let info = document.getElementById("info-btn")
 let infoPopup = document.getElementById("info")
 let winPopup = document.getElementById("win")
 let losePopup = document.getElementById("lose")
+let ttJogos = 0
+let ttVitoria = 0
+let vitSeq = 0
+let bestSeq = 0
 
 info.addEventListener("click", () => {
   infoPopup.style.visibility = "visible"
@@ -22,6 +26,15 @@ let arrayFraseFinal = ['Impressionante!', 'Incrível!', 'Que mente brilhante!','
 function popUpFinal() {
   let indexFinal = Math.floor(Math.random() * arrayFraseFinal.length)
   let fraseFinal = arrayFraseFinal[indexFinal]
+
+  // display da quantidade de vitorias e de total de jogos
+  document.getElementById('tt-jogos').innerHTML = ttJogos
+  document.getElementById('tt-vit').innerHTML = ttVitoria
+  document.getElementById('porc-vit').innerHTML = (((ttJogos / ttVitoria) * 100) || 0 ) + "%"
+  document.getElementById('seq-vit').innerHTML = vitSeq
+  document.getElementById('best-seq').innerHTML = bestSeq
+
+  
 
   document.getElementById('frase-final'). innerHTML = fraseFinal
 }
@@ -101,14 +114,15 @@ const palavras = new Set([
   "tutor", "inter", "porte", "amado", "mídia", "canso", "guria", "volta", "gabar", "feita",
   "bazar", "vedar", "rural", "arfar", "natal", "depor", "gruta", "irado", "tchau", "nesse",
   "jogar", "cifra", "bucho", "laudo", "pomar", "vadio", "curva", "fossa", "pavor", "odiar",
-  "pasto", "pizza",
+  "pasto", "pizza", "pesca", "piano", "perca"
 ]);
 
 function sortearPalavra() {
   const arrayPalavras = Array.from(palavras)
   let indexAleatorio = Math.floor(Math.random() * arrayPalavras.length)
   palavraDoJogo = arrayPalavras[indexAleatorio]
-  return palavraDoJogo
+  ttJogos += 1
+  return palavraDoJogo, ttJogos
 }
 
 let ttPal = document.getElementById('total-set')
@@ -121,6 +135,7 @@ function selectLetter() {
   let iRow = 1
   let iInput = 1
   let arrayTent = []
+  let arrayCorretos = [0,0,0,0,0]
   let foraBase = document.querySelector('.warning')
   let input = document.querySelector(`#row-${iRow} > #letter-${iInput}`)
   input.focus()
@@ -158,6 +173,8 @@ function selectLetter() {
             console.log('A letra ' + arrayTent[tent].toUpperCase() + ' está na posição correta!')
             input = document.querySelector(`#row-${iRow} > #letter-${tent + 1}`)
             input.classList.add('pos-certa')
+            arrayCorretos[tent] = 1
+
             this.document.getElementById(arrayTent[tent]).classList.add('pos-certa')
             input.disabled = true
           } else if (arrayResposta.includes(arrayTent[tent])) {
@@ -188,6 +205,21 @@ function selectLetter() {
           linhaAtual.classList.remove('shake')
           foraBase.classList.remove('show')
         }, 2000)
+      }
+
+      if(iRow === 6 & arrayCorretos.find(element => element === 0)) {
+        console.log('Perdeu') 
+      } else if(arrayCorretos.every(element => element === 1)) {
+        this.setTimeout(() => {
+        winPopup.style.visibility = "visible"
+        })
+        if(this.localStorage.getItem("tt-vitoria")) {
+          let valor = this.localStorage.getItem("tt-vitoria")
+          console.log(valor)
+          valor += 1
+        } else {
+          this.localStorage.setItem("tt-vitoria",1)
+        }
       }
     }
   })
