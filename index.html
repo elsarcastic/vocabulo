@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocábulo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Titan+One&display=swap"
+      rel="stylesheet">
+  </head>
+  <body>
+    <main>
+      <div id="info" class="info">
+        <div class="card">
+          <h2>Atenção!</h2>
+          <p>Esta é uma réplica do jogo <a href="https://term.ooo">Termo</a>, criado pelo brasileiro Fernando Serboncini.</p>
+          <p>A funcionalidade é semelhante a do jogo original: você possui 6 tentativas para acertar a palavra sorteada. 
+            Cada tentativa te dá dicas no formato de cores para conseguir adivinhar a resposta:</p>
+            <div class="example-row">
+              <input class="example-letter fora-pal" type="text" maxlength="1" value="p">
+              <input class="example-letter pos-certa" type="text" maxlength="1" value="o">
+              <input class="example-letter pos-errada" type="text" maxlength="1" value="r">
+              <input class="example-letter fora-pal" type="text" maxlength="1" value="t">
+              <input class="example-letter pos-errada" type="text" maxlength="1" value="a">
+            </div>
+            <p>No exemplo acima as letras <b>P</b> e <b>T</b> não pertencem à palavra, as letras <b>R</b> e <b>A</b> estão
+            na palavra, porém na posição errada, e a letra <b>O</b> pertence à palavra e está na posição correta.</p>
+            <p>A base de palavras desse jogo foi feita manualmente e, por se tratar de um projeto iniciante, não
+            possui nenhuma palavra com acentuação. Atualmente contamos com <b><span id="total-set"></span></b> palavras em nosso Set.</p>
+            <p>O que diferencia esse estudo do jogo original é que aqui há a possibilidade de jogar quantas vezes quiser. 
+              Essa foi, inclusive, a motivação para criá-lo.
+            </p>
+            <P>Espero que gostem e se divirtam jogando =)</P>
+        </div>
+      </div>
+      <section class="header">
+        <div class="topbar">
+          <h1 class="title">VOCÁBULO</h1>
+          <button id="info-btn" class="help-btn">
+            <img class="help" src="./img/question.png" alt="como funciona">
+          </button>
+        </div>
+        <div>
+          <p class="warning">palavra fora de nossa base =(</p>
+        </div>
+      </section>
+      <section class="game">
+        <div class="game-fields">
+        <div id="row-1" class="row">
+          <input id="letter-1" class="letter" type="text" maxlength="1">
+          <input id="letter-2" class="letter" type="text" maxlength="1">
+          <input id="letter-3" class="letter" type="text" maxlength="1">
+          <input id="letter-4" class="letter" type="text" maxlength="1">
+          <input id="letter-5" class="letter" type="text" maxlength="1">
+        </div>
+        <div id="row-2" class="row">
+          <input id="letter-1" class="letter" type="text" maxlength="1">
+          <input id="letter-2" class="letter" type="text" maxlength="1">
+          <input id="letter-3" class="letter" type="text" maxlength="1">
+          <input id="letter-4" class="letter" type="text" maxlength="1">
+          <input id="letter-5" class="letter" type="text" maxlength="1">
+        </div>
+        <div id="row-3" class="row">
+          <input id="letter-1" class="letter" type="text" maxlength="1">
+          <input id="letter-2" class="letter" type="text" maxlength="1">
+          <input id="letter-3" class="letter" type="text" maxlength="1">
+          <input id="letter-4" class="letter" type="text" maxlength="1">
+          <input id="letter-5" class="letter" type="text" maxlength="1">
+        </div>
+        <div id="row-4" class="row">
+          <input id="letter-1" class="letter" type="text" maxlength="1">
+          <input id="letter-2" class="letter" type="text" maxlength="1">
+          <input id="letter-3" class="letter" type="text" maxlength="1">
+          <input id="letter-4" class="letter" type="text" maxlength="1">
+          <input id="letter-5" class="letter" type="text" maxlength="1">
+        </div>
+        <div id="row-5" class="row">
+          <input id="letter-1" class="letter" type="text" maxlength="1">
+          <input id="letter-2" class="letter" type="text" maxlength="1">
+          <input id="letter-3" class="letter" type="text" maxlength="1">
+          <input id="letter-4" class="letter" type="text" maxlength="1">
+          <input id="letter-5" class="letter" type="text" maxlength="1">
+        </div>
+        <div id="row-6" class="row">
+          <input id="letter-1" class="letter" type="text" maxlength="1">
+          <input id="letter-2" class="letter" type="text" maxlength="1">
+          <input id="letter-3" class="letter" type="text" maxlength="1">
+          <input id="letter-4" class="letter" type="text" maxlength="1">
+          <input id="letter-5" class="letter" type="text" maxlength="1">
+        </div>
+      </div>
+        <section class="teclado">
+          <div>
+            <button id="q" class="key" value="q">q</button>
+            <button id="w" class="key" value="w">w</button>
+            <button id="e" class="key" value="e">e</button>
+            <button id="r" class="key" value="r">r</button>
+            <button id="t" class="key" value="t">t</button>
+            <button id="y" class="key" value="y">y</button>
+            <button id="u" class="key" value="u">u</button>
+            <button id="i" class="key" value="i">i</button>
+            <button id="o" class="key" value="o">o</button>
+            <button id="p" class="key" value="p">p</button>
+          </div>
+          <div>
+            <button id="a" class="key" value="a">a</button>
+            <button id="s" class="key" value="s">s</button>
+            <button id="d" class="key" value="d">d</button>
+            <button id="f" class="key" value="f">f</button>
+            <button id="g" class="key" value="g">g</button>
+            <button id="h" class="key" value="h">h</button>
+            <button id="j" class="key" value="j">j</button>
+            <button id="k" class="key" value="k">k</button>
+            <button id="l" class="key" value="l">l</button>
+            <button id="backspace" class="key" value="backspace"></button>
+          </div>
+          <div>
+            <button id="z" class="key" value="z">z</button>
+            <button id="x" class="key" value="x">x</button>
+            <button id="c" class="key" value="c">c</button>
+            <button id="v" class="key" value="v">v</button>
+            <button id="b" class="key" value="b">b</button>
+            <button id="n" class="key" value="n">n</button>
+            <button id="m" class="key" value="m">m</button>
+            <button id="enter" class="key" value="enter"></button>
+          </div>
+        </section>
+      </section>
+      <div id="win" class="win">
+        <div class="card">
+          <div id="frase-final"></div>
+            <h4>progresso</h4>
+            <div>
+              <div id="tt-jogos"></div>
+              <div id="tt-vit"></div>
+              <div id="seq-vit"></div>
+              <div id="best-seq"></div>
+            </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="js/scriptTermo.js"></script>
+</html>
