@@ -153,11 +153,11 @@ main {
 }
 
 .info {
-  visibility: hidden;
+  visibility: visible;
 }
 
 .win {
-  visibility: visible;
+  visibility: hidden;
 }
 
 .card {
@@ -178,7 +178,7 @@ main {
   max-width: 450px;
 }
 
-p, h2, a, b, span, h4 {
+p, h2, a, b, span, h4, .btn  {
   font-family: 'Baloo 2', cursive;
   background-color: #496494;
 }
@@ -199,12 +199,19 @@ p, h2, a, b, span, h4 {
   max-width: 80px;
 }
 
-.btns {
-  gap: 10px;
+.btn {
+  height: 30px;
+  width: 120px;
+  background-color: #e47813;
+  border: none;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #frase-final {
   color: #e47813;
+  font-size: 20px;
 }
 
 .teclado {
