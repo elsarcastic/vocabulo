@@ -20,11 +20,11 @@
           <p>A funcionalidade é semelhante a do jogo original: você possui 6 tentativas para acertar a palavra sorteada. 
             Cada tentativa te dá dicas no formato de cores para conseguir adivinhar a resposta:</p>
             <div class="example-row">
-              <input class="example-letter fora-pal" type="text" maxlength="1" value="p">
-              <input class="example-letter pos-certa" type="text" maxlength="1" value="o">
-              <input class="example-letter pos-errada" type="text" maxlength="1" value="r">
-              <input class="example-letter fora-pal" type="text" maxlength="1" value="t">
-              <input class="example-letter pos-errada" type="text" maxlength="1" value="a">
+              <input class="example-letter fora-pal" maxlength="1" value="p">
+              <input class="example-letter pos-certa" maxlength="1" value="o">
+              <input class="example-letter pos-errada" maxlength="1" value="r">
+              <input class="example-letter fora-pal" maxlength="1" value="t">
+              <input class="example-letter pos-errada" maxlength="1" value="a">
             </div>
             <p>No exemplo acima as letras <b>P</b> e <b>T</b> não pertencem à palavra, as letras <b>R</b> e <b>A</b> estão
             na palavra, porém na posição errada, e a letra <b>O</b> pertence à palavra e está na posição correta.</p>
@@ -156,9 +156,9 @@
               </div>
             </div>
             <div class="btns">
-              <button>Jogar novamente</button>
-              <button>Resetar jogo</button>
-              <button>Compartilhar</button>
+              <button id="play-again" class="btn">Jogar novamente</button>
+              <button id="reset-game" class="btn">Resetar jogo</button>
+              <button id="share-game" class="btn">Compartilhar</button>
             </div>
         </div>
       </div>
