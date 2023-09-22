@@ -48,7 +48,9 @@ const palavras = new Set([
   "bazar", "vedar", "rural", "arfar", "natal", "depor", "gruta", "irado", "tchau", "nesse", "jogar", "cifra", "bucho", "laudo", "pomar",
   "vadio", "curva", "fossa", "pavor", "odiar", "pasto", "pizza", "pesca", "piano", "perca", "rotas", "rosca", "dobra", "cobra", "corda",
   "rasgo", "regar", "cavar", "nadar", "moita", "cinto", "tinto", "micro", "litro", "nitro", "lista", "misto", "gasto", "dieta", "marte",
-  "morna",  
+  "morna", "meter", "gozar", "aguei", "fusca", "falei", "parei", "foder", "fecal", "vidro", "fosca", "valsa", "balsa", "digna", "poste",
+  "porre", "vespa", "chore", "corre", "pular", "polir", "pinto", "visco", "cisco", "podre", "janta", "beber", "zinco", "fuzil", "vinco",
+  "vinho", "ninho", "gotas", "garfo", "colhe", "molhe", "bolha", "folha", "rolha", "lambe", 
 ]);
 
 let info = document.getElementById("info-btn")
