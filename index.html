@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Titan+One&display=swap"
       rel="stylesheet">
@@ -50,46 +51,46 @@
       <section class="game">
         <div class="game-fields">
         <div id="row-1" class="row">
-          <input id="letter-1" class="letter" type="text" maxlength="1">
-          <input id="letter-2" class="letter" type="text" maxlength="1">
-          <input id="letter-3" class="letter" type="text" maxlength="1">
-          <input id="letter-4" class="letter" type="text" maxlength="1">
-          <input id="letter-5" class="letter" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
         </div>
         <div id="row-2" class="row">
-          <input id="letter-1" class="letter" type="text" maxlength="1">
-          <input id="letter-2" class="letter" type="text" maxlength="1">
-          <input id="letter-3" class="letter" type="text" maxlength="1">
-          <input id="letter-4" class="letter" type="text" maxlength="1">
-          <input id="letter-5" class="letter" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
         </div>
         <div id="row-3" class="row">
-          <input id="letter-1" class="letter" type="text" maxlength="1">
-          <input id="letter-2" class="letter" type="text" maxlength="1">
-          <input id="letter-3" class="letter" type="text" maxlength="1">
-          <input id="letter-4" class="letter" type="text" maxlength="1">
-          <input id="letter-5" class="letter" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
         </div>
         <div id="row-4" class="row">
-          <input id="letter-1" class="letter" type="text" maxlength="1">
-          <input id="letter-2" class="letter" type="text" maxlength="1">
-          <input id="letter-3" class="letter" type="text" maxlength="1">
-          <input id="letter-4" class="letter" type="text" maxlength="1">
-          <input id="letter-5" class="letter" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
         </div>
         <div id="row-5" class="row">
-          <input id="letter-1" class="letter" type="text" maxlength="1">
-          <input id="letter-2" class="letter" type="text" maxlength="1">
-          <input id="letter-3" class="letter" type="text" maxlength="1">
-          <input id="letter-4" class="letter" type="text" maxlength="1">
-          <input id="letter-5" class="letter" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
         </div>
         <div id="row-6" class="row">
-          <input id="letter-1" class="letter" type="text" maxlength="1">
-          <input id="letter-2" class="letter" type="text" maxlength="1">
-          <input id="letter-3" class="letter" type="text" maxlength="1">
-          <input id="letter-4" class="letter" type="text" maxlength="1">
-          <input id="letter-5" class="letter" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
+          <input class="letter empty disabled" type="text" maxlength="1">
         </div>
       </div>
         <section class="teclado">
@@ -115,7 +116,9 @@
             <button id="j" class="key" value="j">j</button>
             <button id="k" class="key" value="k">k</button>
             <button id="l" class="key" value="l">l</button>
-            <button id="backspace" class="key" value="backspace"></button>
+            <button id="backspace" class="key" value="backspace">
+              <img src="./img/delete.png" alt="deletar">
+            </button>
           </div>
           <div>
             <button id="z" class="key" value="z">z</button>
@@ -125,7 +128,7 @@
             <button id="b" class="key" value="b">b</button>
             <button id="n" class="key" value="n">n</button>
             <button id="m" class="key" value="m">m</button>
-            <button id="enter" class="key" value="enter"></button>
+            <button id="enter" class="key" value="enter">enter</button>
           </div>
         </section>
       </section>

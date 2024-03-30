@@ -4,14 +4,20 @@
   padding:  0;
   color: #f0f0f0;
   font-family: 'Titan One', cursive;
-}
-main {
-  width: 100%;
-  height: 100%;
+  box-sizing: border-box;
 }
 
+:root {
+  font-size: 62.5%; /* 10 px */
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+
 .game {
-  gap: 40px;
+  gap: 4.0rem;
 }
 
 .game-fields, .game {
@@ -25,12 +31,12 @@ main {
 }
 
 .letter, .example-letter {
-  height: 45px;
-  width: 45px;
-  font-size: 30px;
+  height: 6.8rem;
+  width: 6.8rem;
+  font-size: 4.2rem;
   text-transform: capitalize;
   border: solid 4px ;
-  border-radius: 5px;
+  border-radius: 0.8rem;
   border-color: #060D4A;
   text-align: center;
   caret-color: transparent;
@@ -38,21 +44,48 @@ main {
   transition: background-color ease-in 0.2s, border-color ease-in 0.2s;
 }
 
+.letter:focus {
+  outline: #7177c1 2px solid;
+}
+
+.disabled {
+  background-color: #161f57;
+  border-color: #161f57;
+  pointer-events:none;
+}
+
 .example-letter {
-  height: 40px;
-  width: 40px;
-  font-size: 25px;
+  height: 5rem;
+  width: 5rem;
+  font-size: 3.4rem;
 }
 
 .key {
   background-color: #060D4A;
-  height: 45px;
-  width: 35px;
+  height: 6.0rem;
+  width: 4rem;
   border: none;
   border-radius: 5px;
   text-transform: capitalize;
-  font-size: 20px;
+  font-size: 2.8rem;
   cursor: pointer;
+}
+
+#enter {
+  width: 12rem;
+}
+
+#enter, #backspace {
+  margin-left: 2rem;
+}
+
+#backspace {
+  width: 6rem;
+}
+
+#backspace > img {
+  height: 2.4rem;
+  background-color: transparent;
 }
 
 .pos-errada {
@@ -75,11 +108,11 @@ main {
 }
 
 @keyframes shake {
-  0% { transform: translate(10px, 0px) rotate(0deg); }
+  0% { transform: translate(1rem, 0px) rotate(0deg); -webkit-transform: translate(1rem, 0px) rotate(0deg); -moz-transform: translate(1rem, 0px) rotate(0deg); -ms-transform: translate(1rem, 0px) rotate(0deg); -o-transform: translate(1rem, 0px) rotate(0deg); }
 	30% { transform: translate(0px, 0px) rotate(0deg); }
-	60% { transform: translate(10px, 0px) rotate(0deg); }
+	60% { transform: translate(1rem, 0px) rotate(0deg); -webkit-transform: translate(10px, 0px) rotate(0deg); -moz-transform: translate(10px, 0px) rotate(0deg); -ms-transform: translate(10px, 0px) rotate(0deg); -o-transform: translate(10px, 0px) rotate(0deg); }
 	80% { transform: translate(4px, 0px) rotate(0deg); }
-	100% { transform: translate(0px, 0px) rotate(0deg); }
+	100% { transform: translate(0px, 0px) rotate(0deg); -webkit-transform: translate(0px, 0px) rotate(0deg); -moz-transform: translate(0px, 0px) rotate(0deg); -ms-transform: translate(0px, 0px) rotate(0deg); -o-transform: translate(0px, 0px) rotate(0deg); }
 }
 
 .shake {
@@ -92,21 +125,21 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  margin: 10px 0px 20px 0px;
+  gap: 2.0rem;
+  margin: 1rem 0px 2.0rem 0px;
 }
 
 .topbar {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
 }
 
 .title {
   font-weight: 400;
-  font-size: 25px;
+  font-size: 3.2rem;
 }
 
 .help-btn {
@@ -116,7 +149,8 @@ main {
 }
 
 .help {
-  height: 15px;
+  height: 1.9rem;
+  margin-top: 0.7rem;
 }
 
 .warning {
@@ -125,10 +159,10 @@ main {
   transition: all 0.2s ease-in-out;
   transform: scale(0.1);
   background-color: #807FCB;
-  font-size: 16px;
-  padding: 3px 18px;
-  border-radius: 8px;
-  max-width: 520px;
+  font-size: 1.6rem;
+  padding: 3px 1.8rem;
+  border-radius: 0.8rem;
+  max-width: 52.0rem;
   text-align: center;
   font-weight: 400;
   font-family: 'Baloo 2', cursive;
@@ -165,17 +199,17 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 600px;
+  max-width: 70.0rem;
   background-color: #496494;
-  padding: 20px 40px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 4.0rem;
+  border-radius: 1.8rem;
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.5);
   text-align: center;
-  gap: 10px;
+  gap: 1.4rem;
 }
 
 .card-win {
-  max-width: 450px;
+  max-width: 55.0rem;
 }
 
 p, h2, a, b, span, h4, .btn  {
@@ -190,28 +224,37 @@ p, h2, a, b, span, h4, .btn  {
 .progresso {
   display: flex;
   flex-direction: row;
-  gap: 25px;
+  gap: 2.5rem;
 }
 
 .slot {
   display: flex;
   flex-direction: column;
-  max-width: 80px;
+  max-width: 8.0rem;
+}
+
+.btns {
+  display: flex;
+  gap: 2.0rem;
 }
 
 .btn {
-  height: 30px;
-  width: 120px;
+  height: 3.0rem;
+  width: 12.0rem;
   background-color: #e47813;
   border: none;
-  font-size: 14px;
+  font-size: 1.4rem;
   border-radius: 5px;
   cursor: pointer;
 }
 
+.btn:hover {
+  background-color: #b45c0a;
+}
+
 #frase-final {
   color: #e47813;
-  font-size: 20px;
+  font-size: 2.0rem;
 }
 
 .teclado {
@@ -227,4 +270,18 @@ p, h2, a, b, span, h4, .btn  {
 .teclado > div {
   flex-direction: row;
   gap: 6px;
+}
+
+p {
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+}
+
+h2 {
+  font-size: 2.8rem;
+}
+
+a {
+  color: #060D4A;
+  font-weight: 700;
 }

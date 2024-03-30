@@ -50,13 +50,12 @@ const palavras = new Set([
   "rasgo", "regar", "cavar", "nadar", "moita", "cinto", "tinto", "micro", "litro", "nitro", "lista", "misto", "gasto", "dieta", "marte",
   "morna", "meter", "gozar", "aguei", "fusca", "falei", "parei", "foder", "fecal", "vidro", "fosca", "valsa", "balsa", "digna", "poste",
   "porre", "vespa", "chore", "corre", "pular", "polir", "pinto", "visco", "cisco", "podre", "janta", "beber", "zinco", "fuzil", "vinco",
-  "vinho", "ninho", "gotas", "garfo", "colhe", "molhe", "bolha", "folha", "rolha", "lambe", 
+  "vinho", "ninho", "gotas", "garfo", "colhe", "molhe", "bolha", "folha", "rolha", "lambe",
 ]);
 
-let info = document.getElementById("info-btn")
-let infoPopup = document.getElementById("info")
-let winPopup = document.getElementById("win")
-let losePopup = document.getElementById("lose")
+const info = document.getElementById("info-btn")
+const infoPopup = document.getElementById("info")
+const winPopup = document.getElementById("win")
 let ttJogos = 0
 let ttVitoria = 0
 let vitSeq
@@ -67,19 +66,28 @@ info.addEventListener("click", () => {
 })
 
 window.addEventListener("click", function (event) {
-  if(event.target == infoPopup || event.target == winPopup || event.target == losePopup) {
+  if(finalizado == 1) {
+    if(!(infoPopup.style.visibility == "visible")) {
+      if(winPopup.style.visibility == "hidden") {
+        winPopup.style.visibility = "visible"
+      } else {
+        winPopup.style.visibility = "hidden"
+      }
+    }
+  }
+  if (event.target == infoPopup || event.target == winPopup 
+  ) {
     winPopup.style.visibility = "hidden"
     infoPopup.style.visibility = "hidden"
-    //losePopup.style.display = "none"
   }
 })
 
-const arrayFinalVitoria = ['Impressionante!', 'Incrível!', 'Que mente brilhante!','Boa! Pronto para a próxima?',
-'Continue assim e será capaz de ultrapassar Albert Einstein.', 'Não acredito que adivinhou >:(', 'Estava tão fácil assim?',
-'Foi você que inventou o português?','Por pouco!', 'Quase!']
+const arrayFinalVitoria = ['Impressionante!', 'Incrível!', 'Que mente brilhante!', 'Boa! Pronto para a próxima?',
+  'Continue assim e será capaz de ultrapassar Albert Einstein.', 'Não acredito que adivinhou >:(', 'Estava tão fácil assim?',
+  'Foi você que inventou o português?', 'Por pouco!', 'Quase!', "Fenomenal!"]
 
 const arrayFinalDerrota = ['Não foi dessa vez :(', 'Quase!', 'Talvez na próxima você esteja mais sortudo', '...Nova estratégia?',
-'Por pouco!', 'Que tal mais uma?']
+  'Por pouco!', 'Que tal mais uma?']
 
 function popUpFinal(arrayFraseFinal) {
   let indexFinal = Math.floor(Math.random() * arrayFraseFinal.length)
@@ -88,35 +96,17 @@ function popUpFinal(arrayFraseFinal) {
   // display da quantidade de vitorias e de total de jogos
   document.getElementById('tt-jogos').innerHTML = ttJogos
   document.getElementById('tt-vit').innerHTML = ttVitoria
-  document.getElementById('porc-vit').innerHTML = (Math.round((ttVitoria / ttJogos) * 100) || 0 ) + "%"
+  document.getElementById('porc-vit').innerHTML = (Math.round((ttVitoria / ttJogos) * 100) || 0) + "%"
   document.getElementById('seq-vit').innerHTML = vitSeq
   document.getElementById('best-seq').innerHTML = bestSeq
-  document.getElementById('frase-final'). innerHTML = fraseFinal
+  document.getElementById('frase-final').innerHTML = fraseFinal
 
   winPopup.style.visibility = "visible"
 }
 
 document.getElementById('play-again').addEventListener('click', () => {
   window.location.reload()
- // var elements = document.getElementsByTagName("input");
- // for (var ii=0; ii < elements.length; ii++) {
-  //  if (elements[ii].type == "text") {
-   //   elements[ii].value = "";
-  //  };
-  //  iRow = 0
-  //  iInput = 0
-  //  arrayTent = []
- //   arrayCorretos = [0,0,0,0,0]
-   // let letras = document.querySelectorAll('.letter')
-  //  letras.forEach(letra => {
- //     letra.classList.remove('pos-certa')
- //     letra.classList.remove('pos-errada')
-//      letra.classList.remove('fora-pal')
- //     letra.disabled = false
-//    })
-
-    winPopup.style.visibility = "hidden"
-//}
+  winPopup.style.visibility = "hidden"
 })
 
 document.getElementById('reset-game').addEventListener('click', () => {
@@ -125,183 +115,200 @@ document.getElementById('reset-game').addEventListener('click', () => {
   
 })
 
-// seleciona a palavra dentro do array que temos
+//sorteia a palavra do jogo
 function sortearPalavra() {
   const arrayPalavras = Array.from(palavras)
   let indexAleatorio = Math.floor(Math.random() * arrayPalavras.length)
   palavraDoJogo = arrayPalavras[indexAleatorio]
 
   // inserindo quantidade de jogos no armazenamento local do navegador
-  if(this.localStorage.getItem("tt-jogos")) {
-    let valor = parseInt(this.localStorage.getItem("tt-jogos"))
-    valor += 1
-    this.localStorage.setItem('tt-jogos', valor)
-    ttJogos = valor
-  } else {
-    this.localStorage.setItem("tt-jogos",1)
-    ttJogos = 1
-  }
-  
-  return palavraDoJogo, ttJogos
+
+  return palavraDoJogo
 }
 
-let ttPal = document.getElementById('total-set')
+document.getElementById('total-set').innerHTML = palavras.size
 
-ttPal.innerHTML = palavras.size
+function contarQtdRepeticao(array, valor) {
+  let contador = 0
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === valor) {
+      contador++
+    }
+  }
+  return contador
+}
 
-function selectLetter() {
-  window.onload = sortearPalavra()
-  let totalJog = ttJogos
-  const arrayResposta = palavraDoJogo.split("")
-  var iRow = 1
-  var iInput = 1
-  let arrayTent = []
-  let arrayCorretos = [0,0,0,0,0]
-  let foraBase = document.querySelector('.warning')
-  let input = document.querySelector(`#row-${iRow} > #letter-${iInput}`)
-  input.focus()
-  console.log(input)
+window.onload = sortearPalavra()
+let arrayResposta = palavraDoJogo.split('')
+console.log(arrayResposta)
 
-  addEventListener('keyup', function (e) {
+let divAtiva = $(`input.empty`).first().parent().attr('id')
+$(`#${divAtiva} > input.empty`).removeClass('disabled')
+let prevKey = ''
+let arrayTentativa = []
+let primeiraLetra = 0
+let finalizado = 0
 
-    if (e.key === 'Backspace') {
-      if (iInput <= 1) { }
-      else {
-        arrayTent.pop()
-        iInput -= 1
-        input = document.querySelector(`#row-${iRow} > #letter-${iInput}`)
-        input.focus()
+if(finalizado === 0) {
+window.addEventListener('keydown', (event) => {
+
+  if ($(`#${divAtiva} > input.empty`).length > 0) {
+    console.log($(`#${divAtiva} > input.empty`).length)
+    let letra = $(`input.empty`).first()[0]
+    letra.addEventListener('input', () => {
+      console.log('preenchido')
+      letra.classList.remove('empty')
+      let inputs = $(`#${divAtiva} > input.empty`)
+      if (inputs.length > 0) {
+        inputs.first().focus()
       }
-    } else if (e.which >= 65 && e.which <= 90) {
-      if (input.value.length > 0 && iInput < 6) {
-        arrayTent.push(input.value.toLowerCase())
-        iInput += 1
-        input = document.querySelector(`#row-${iRow} > #letter-${iInput}`)
-        if (iInput < 6) {
-          input.focus()
+    })
+  } else if (event.code == 'Enter') {
+    $(`#${divAtiva} > input`).each(function () {
+      arrayTentativa.push($(this).val().toLowerCase())
+
+    })
+
+    for (i = 0; i < 5; i++) {
+      let input = $(`#${divAtiva} > input`).eq(i);
+
+      if (arrayResposta[i] == arrayTentativa[i]) {
+        input.addClass('pos-certa')
+        input.prop("disabled", true)
+
+      } else if (arrayResposta.includes(arrayTentativa[i])) {
+        if (contarQtdRepeticao(arrayResposta, arrayTentativa[i]) == 1 && contarQtdRepeticao(arrayTentativa, arrayTentativa[i]) == 1) {
+          input.addClass('pos-errada')
+          input.prop("disabled", true)
+        } else if (contarQtdRepeticao(arrayTentativa, arrayTentativa[i]) > 1 && contarQtdRepeticao(arrayTentativa, arrayTentativa[i]) == contarQtdRepeticao(arrayResposta, arrayTentativa[i])) {
+          let qtdFeito = $(`#${divAtiva} > .pos-certa, #${divAtiva} > .pos-errada`).filter(function () {
+            return $(this).val() === arrayTentativa[i]
+          }).length
+
+          if (qtdFeito < contarQtdRepeticao(arrayResposta, arrayTentativa[i])) {
+            input.addClass('pos-errada')
+            input.prop("disabled", true)
+          } else {
+            input.addClass('fora-pal')
+            input.prop("disabled", true)
+          }
+
+        } else if (contarQtdRepeticao(arrayTentativa, arrayTentativa[i]) > contarQtdRepeticao(arrayResposta, arrayTentativa[i])) {
+          primeiraLetra = arrayResposta.indexOf(arrayTentativa[i])
+
+          if (primeiraLetra > i) {
+            input.addClass('fora-pal')
+            input.prop("disabled", true)
+          } else {
+            input.addClass('pos-errada')
+            input.prop("disabled", true)
+          }
+        } else {
+          input.addClass('pos-errada')
+          input.prop("disabled", true)
         }
+
+      } else {
+        input.addClass('fora-pal')
+        input.prop("disabled", true)
+        //     this.document.getElementById(arrayTent[tent]).classList.add('fora-tec')
+        //     input.disabled = true
+      }
+    }
+    arrayTentativa = []
+
+    if ($(`#${divAtiva} > input.pos-certa`).length == 5) {
+      // inserindo quantidade de vitorias no armazenamento local do navegador
+      if(this.localStorage.getItem("tt-vitoria")) {
+        let valor = parseInt(this.localStorage.getItem("tt-vitoria"))
+        valor += 1
+        this.localStorage.setItem('tt-vitoria', valor)
+        ttVitoria = valor
+      } else {
+        this.localStorage.setItem("tt-vitoria",1)
+        ttVitoria = 1
       }
 
-    } else if (e.key === 'Enter' && iInput === 6) {
-      let tentativa = arrayTent.join('').toLowerCase()
-      if (palavras.has(tentativa)) {
-        for (let tent = 0; tent < 5; tent++) {
-          if (arrayResposta[tent] == arrayTent[tent]) {
-            input = document.querySelector(`#row-${iRow} > #letter-${tent + 1}`)
-            input.classList.add('pos-certa')
-            arrayCorretos[tent] = 1
+      // inserindo sequencia de vitorias no armazenamento local do navegador
+      if(this.localStorage.getItem("seq-vitoria")) {
+        let valor = parseInt(this.localStorage.getItem("seq-vitoria"))
+        valor += 1
+        this.localStorage.setItem('seq-vitoria', valor)
+        vitSeq = valor
+      } else {
+        this.localStorage.setItem("seq-vitoria",1)
+        vitSeq = 1
+      }
 
-            this.document.getElementById(arrayTent[tent]).classList.add('pos-certa')
-            input.disabled = true
-          } else if (arrayResposta.includes(arrayTent[tent])) {
-            input = document.querySelector(`#row-${iRow} > #letter-${tent + 1}`)
-            input.classList.add('pos-errada')
-            this.document.getElementById(arrayTent[tent]).classList.add('pos-errada')
-            input.disabled = true
-          } else {
-            input = document.querySelector(`#row-${iRow} > #letter-${tent + 1}`)
-            input.classList.add('fora-pal')
-            this.document.getElementById(arrayTent[tent]).classList.add('fora-tec')
-            input.disabled = true
-          }
+      // inserindo melhor sequencia de vitorias no armazenamento local do navegador
+      if(this.localStorage.getItem("best-seq")) {
+        let seq = parseInt(this.localStorage.getItem("best-seq"))
+        let seqAtual = this.localStorage.getItem('seq-vitoria')
+        if(seqAtual > seq) {
+          this.localStorage.setItem("best-seq",seqAtual)
+          bestSeq = seqAtual
         }
+      } else {
+        this.localStorage.setItem("best-seq",1)
+        bestSeq = 1
+      }
 
-        if(iRow === 6 & arrayCorretos.some(element => element === 0)) {
-            this.localStorage.setItem("seq-vitoria",0)
-            vitSeq = 0
-            this.setTimeout(() => {
-              popUpFinal(arrayFinalDerrota)
-            },500)
-        } else if(arrayCorretos.every(element => element === 1)) {
-
-          // inserindo quantidade de vitorias no armazenamento local do navegador
-          if(this.localStorage.getItem("tt-vitoria")) {
-            let valor = parseInt(this.localStorage.getItem("tt-vitoria"))
-            valor += 1
-            this.localStorage.setItem('tt-vitoria', valor)
-            ttVitoria = valor
-          } else {
-            this.localStorage.setItem("tt-vitoria",1)
-            ttVitoria = 1
-          }
-
-          // inserindo sequencia de vitorias no armazenamento local do navegador
-          if(this.localStorage.getItem("seq-vitoria")) {
-            let valor = parseInt(this.localStorage.getItem("seq-vitoria"))
-            valor += 1
-            this.localStorage.setItem('seq-vitoria', valor)
-            vitSeq = valor
-          } else {
-            this.localStorage.setItem("seq-vitoria",1)
-            vitSeq = 1
-          }
-
-          // inserindo melhor sequencia de vitorias no armazenamento local do navegador
-          if(this.localStorage.getItem("best-seq")) {
-            let seq = parseInt(this.localStorage.getItem("best-seq"))
-            let seqAtual = this.localStorage.getItem('seq-vitoria')
-            if(seqAtual > seq) {
-              this.localStorage.setItem("best-seq",seqAtual)
-              bestSeq = seqAtual
-            }
-          } else {
-            this.localStorage.setItem("best-seq",1)
-            bestSeq = 1
-          }
-  
-          this.setTimeout(() => {
-            popUpFinal(arrayFinalVitoria)
-          },500)
-        }
-
-        if(iRow < 6) {
-          iRow += 1
-          iInput = 1
-          input = document.querySelector(`#row-${iRow} > #letter-${iInput}`)
-        input.focus()
-        arrayTent = []
-        } 
-      
-    } else {
-      let linhaAtual = document.querySelector(`#row-${iRow}`)
-      linhaAtual.classList.add('shake')
-      foraBase.classList.add('show')
+      if (this.localStorage.getItem("tt-jogos")) {
+        let valor = parseInt(this.localStorage.getItem("tt-jogos"))
+        valor += 1
+        this.localStorage.setItem('tt-jogos', valor)
+        ttJogos = valor
+      } else {
+        this.localStorage.setItem("tt-jogos", 1)
+        ttJogos = 1
+      }
 
       this.setTimeout(() => {
-      linhaAtual.classList.remove('shake')
-      foraBase.classList.remove('show')
-    }, 2000)
-    }
-  } 
-})
-}
-
-selectLetter()
-
-function getinput() {
-  let iRow = 1
-  let iInput = 1
-  let input = document.querySelector(`#row-${iRow} > #letter-${iInput}`)
-  console.log(input)
-
-  addEventListener('keyup', function (e) {
-    let input = document.querySelector(`#row-${iRow} > #letter-${iInput}`)
-    input.focus()
-    console.log(e.code, e.which)
-    if (e.which >= 65 && e.which <= 90) {
-      console.log(input.value)
-      if (input.value.length > 0 && iInput < 6) {
-        iInput += 1
-        input = document.querySelector(`#row-${iRow} > #letter-${iInput}`)
-        input.focus()
+        popUpFinal(arrayFinalVitoria)
+      },500)
+      finalizado = 1
+    } else if(divAtiva == 'row-6' && $(`#${divAtiva} > input.pos-certa`).length < 5) {
+      if (this.localStorage.getItem("tt-jogos")) {
+        let valor = parseInt(this.localStorage.getItem("tt-jogos"))
+        valor += 1
+        this.localStorage.setItem('tt-jogos', valor)
+        ttJogos = valor
       } else {
-        iRow += 1
-        Input = 1
-        input = document.querySelector(`#row-${iRow} > #letter-${iInput}`)
-        input.focus()
+        this.localStorage.setItem("tt-jogos", 1)
+        ttJogos = 1
       }
+
+      this.setTimeout(() => {
+        popUpFinal(arrayFinalDerrota)
+      },500)
+      finalizado = 1
+    } else {
+      divAtiva = $(`input.empty`).first().parent().attr('id')
+      $(`#${divAtiva} > input.empty`).removeClass('disabled')
+      $(`input.empty`).first().focus()
+      
+    }
+  }
+
+  if (event.code == 'Backspace') {
+    if (prevKey == 'Backspace' && $(document.activeElement).prev()) {
+      $(document.activeElement).prev().focus()
+      $(document.activeElement).val('')
+      $(document.activeElement).addClass('empty')
     }
 
-  })
+    $(document.activeElement).val('')
+    $(document.activeElement).addClass('empty')
+  }
 
+  if (event.code == 'ArrowLeft') {
+    $(document.activeElement).prev().focus()
+  }
+
+  if (event.code == 'ArrowRight') {
+    $(document.activeElement).next().focus()
+  }
+
+  prevKey = event.code
+})
 }
